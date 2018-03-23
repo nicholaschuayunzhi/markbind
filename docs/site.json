@@ -1,5 +1,5 @@
 {
-  "baseUrl": "/markbind",
+  "baseUrl": "",
   "pages": [
     {
       "src": "index.md",
