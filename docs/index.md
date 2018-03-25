@@ -25,6 +25,7 @@ MarkBind supports all MarkDown and GFMD syntax. Here is an example:
 - [ ] Push my commits to GitHub
 - [ ] Open a pull request
 - [ ] Make a change!
+- [ ] Trigger site change!
 
 ```
   </td>
