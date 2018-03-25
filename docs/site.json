@@ -1,9 +1,13 @@
 {
-  "baseUrl": "/markbind",
+  "baseUrl": "",
   "pages": [
     {
       "src": "index.md",
       "title": "MarkBind: Generate Course Websites from Markdown Text"
+    },
+    {
+      "src": "test.md",
+      "title": "Test"
     }
   ],
   "ignore": [
