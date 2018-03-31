@@ -4,6 +4,54 @@
     {
       "src": "index.md",
       "title": "MarkBind: Generate Course Websites from Markdown Text"
+    },
+    {
+      "src": "userGuide/index.md",
+      "title": "MarkBind: User Guide"
+    },
+    {
+      "src": "userGuide/userQuickStart.md",
+      "title": "MarkBind: User Guide - Quick Start"
+    },
+    {
+      "src": "userGuide/contentAuthoring.md",
+      "title": "MarkBind: User Guide - Content Authoring"
+    },
+    {
+      "src": "userGuide/developingASite.md",
+      "title": "MarkBind: User Guide - Developing a Site"
+    },
+    {
+      "src": "userGuide/ghpagesDeployment.md",
+      "title": "MarkBind: User Guide - Github Pages Deploment"
+    },
+    {
+      "src": "userGuide/includingContents.md",
+      "title": "MarkBind: User Guide - Including Contents"
+    },
+    {
+      "src": "userGuide/siteConfiguration.md",
+      "title": "MarkBind: User Guide - Site Configuration"
+    },
+    {
+      "src": "developerGuide/index.md",
+      "title": "MarkBind: Developer Guide"
+    },
+    {
+      "src": "developerGuide/includeAndRender.md",
+      "title": "MarkBind: User Guide - Include and Render"
+    },
+    {
+      "src": "developerGuide/publishing.md",
+      "title": "MarkBind: Developer Guide - Publishing to npm"
+    },
+    {
+      "src": "developerGuide/settingUp.md",
+      "title": "MarkBind: Developer Guide - Setting up for Development"
+    },
+    {
+      "src": "developerGuide/testing.md",
+      "title": "MarkBind: Developer Guide - Testing"
     }
   ],
   "ignore": [
@@ -14,6 +62,6 @@
     "*.pptx"
   ],
   "deploy": {
-    "message": "Site Update."
+    "message": "Site Update"
   }
 }

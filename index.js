@@ -11,6 +11,9 @@ const htmlBeautify = require('js-beautify').html;
 const liveServer = require('live-server');
 const chokidar = require('chokidar');
 
+const _ = {};
+_.isBoolean = require('lodash/isBoolean');
+
 const logger = require('./lib/util/logger');
 const fsUtil = require('./lib/util/fsUtil');
 const Site = require('./lib/Site');
@@ -208,14 +211,18 @@ program
 
 program
   .command('build [root] [output]')
+  .option('--baseUrl [baseurl]', 'overrides baseUrl in site.json, leave argument empty for empty baseUrl')
   .description('build a website')
-  .action((root, output) => {
+  .action((root, output, cmd) => {
+    // if --baseUrl contains no arguments (cmd.baseUrl === true) then set baseUrl to empty string
+    console.log(cmd.baseUrl);
+    const baseUrl = _.isBoolean(cmd.baseUrl) ? '' : cmd.baseUrl;
     const rootFolder = path.resolve(root || process.cwd());
     const defaultOutputRoot = path.join(rootFolder, '_site');
     const outputFolder = output ? path.resolve(process.cwd(), output) : defaultOutputRoot;
     logger.logo();
     new Site(rootFolder, outputFolder)
-      .generate()
+      .generate(baseUrl)
       .then(() => {
         logger.info('Build success!');
       })
