@@ -4,6 +4,42 @@
     {
       "src": "index.md",
       "title": "MarkBind: Generate Course Websites from Markdown Text"
+    },
+    {
+      "src": "userGuide.md",
+      "title": "MarkBind: User Guide"
+    },
+    {
+      "src": "developerGuide.md",
+      "title": "MarkBind: Developer Guide"
+    },
+    {
+      "src": "sections/userQuickStart.md",
+      "title": "MarkBind: User Guide - Quick Start"
+    },
+    {
+      "src": "sections/includeAndRender.md",
+      "title": "MarkBind: User Guide - Include and Render"
+    },
+    {
+      "src": "sections/contentAuthoring.md",
+      "title": "MarkBind: User Guide - Content Authoring"
+    },
+    {
+      "src": "sections/developingASite.md",
+      "title": "MarkBind: User Guide - Developing a Site"
+    },
+    {
+      "src": "sections/ghpagesDeployment.md",
+      "title": "MarkBind: User Guide - Github Pages Deploment"
+    },
+    {
+      "src": "sections/includingContents.md",
+      "title": "MarkBind: User Guide - Including Contents"
+    },
+    {
+      "src": "sections/siteConfiguration.md",
+      "title": "MarkBind: User Guide - Site Configuration"
     }
   ],
   "ignore": [
@@ -14,6 +50,6 @@
     "*.pptx"
   ],
   "deploy": {
-    "message": "Site Update."
+    "message": "Site Update"
   }
 }
