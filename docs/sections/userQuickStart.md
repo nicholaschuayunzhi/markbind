@@ -9,15 +9,10 @@
 ## Requirement
 We expect users to have basic knowledge of the following:
 - [x] Markdown
-- [x] HTML & CSS
-- [x] npm (Node.js)
 - [x] Command-line Environment
 
 ## Installation
-`MarkBind` can be installed using npm
-
-`v1.4.3`: and above: Node.js with version 8.0 and higher is required.
-`v1.4.2`: We recommend users to use Node.js with version 6.5 or higher.
+`MarkBind` can be [installed using npm](https://www.npmjs.com/get-npm).
 
 You can run:
 ```
@@ -29,10 +24,10 @@ After installation, you can run
 ```
 $ markbind
 ```
-to ensure `MarkBind` is successfully installed on your system.
+to ensure `MarkBind` is successfully installed on your system. You should see:
 
 ```
-__  __                  _      ____    _               _
+ __  __                  _      ____    _               _
 |  \/  |   __ _   _ __  | | __ | __ )  (_)  _ __     __| |
 | |\/| |  / _` | | '__| | |/ / |  _ \  | | | '_ \   / _` |
 | |  | | | (_| | | |    |   <  | |_) | | | | | | | | (_| |
@@ -60,8 +55,8 @@ Commands:
 
 You can add the help flag (`--help`) to any command to show the help screen.
 
-## Start Site Development
-### Create a new site with MarkBind
+## Using MarkBind to author a Website
+### Create a new site
 MarkBind can setup a boilerplate site in the current directory:
 
 ```
@@ -74,11 +69,11 @@ After running `init`, two files will be created for you: `index.md` and `site.js
 
 You may refer to this [doc]({{baseUrl}}/sections/siteConfiguration.html) for more details about how you can configure the `site.json`.
 
-### Authoring your contents.
+### Authoring your contents
 Read more about content authoring [here]({{baseUrl}}/sections/contentAuthoring.html).
 
-### Preview and serve your site using:
-After authoring your contents, you can run
+### Preview your site
+After authoring your contents, you can run:
 
 ```
 $ markbind serve
@@ -91,7 +86,7 @@ MarkBind will generate the site in a folder named `_site` in the current directo
 Live reload is enabled to regenerate the site for changes, so you could see the immediate rendering result after you modify the source files.
 
 | Options | Description |
-|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|---|---|
 | `-p`, `--port <port>` | The port used for serving your website. |
 | --no-open | Don't open browser automatically. |
 
@@ -106,7 +101,7 @@ $ markbind build
 
 to build a static website.
 
-By default, MarkBind will generate the site to the folder named `_site` in the current directory, with current directory as the root directory. You can change them using
+By default, MarkBind will generate the site to the folder named `_site` in the current directory, with current directory as the root directory. You can change them using:
 
 ```
 $ markbind build ./rootFolder ./outputFolder
@@ -121,8 +116,6 @@ $ markbind deploy
 ```
 
 By default, it will try to push everything in the generated site (default dir: `_site`) to the `gh-pages` branch of the current git working directory's remote repo.
-
-There are also two useful commands, [*include* and *render*]({{baseUrl}}/sections/includeAndRender.html) that could help you handle ad-hoc including/rendering work. You may also use it for debug purpose as well. .
 
 More details of deployment setting could be found in [here]({{baseUrl}}/sections/ghpagesDeployment.html).
 
