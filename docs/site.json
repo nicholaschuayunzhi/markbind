@@ -32,26 +32,6 @@
     {
       "src": "userGuide/siteConfiguration.md",
       "title": "MarkBind: User Guide - Site Configuration"
-    },
-    {
-      "src": "developerGuide/index.md",
-      "title": "MarkBind: Developer Guide"
-    },
-    {
-      "src": "developerGuide/includeAndRender.md",
-      "title": "MarkBind: User Guide - Include and Render"
-    },
-    {
-      "src": "developerGuide/publishing.md",
-      "title": "MarkBind: Developer Guide - Publishing to npm"
-    },
-    {
-      "src": "developerGuide/settingUp.md",
-      "title": "MarkBind: Developer Guide - Setting up for Development"
-    },
-    {
-      "src": "developerGuide/testing.md",
-      "title": "MarkBind: Developer Guide - Testing"
     }
   ],
   "ignore": [
