@@ -3,7 +3,6 @@
   <dropdown text="User Guide">
     <li><a href="{{baseUrl}}/userGuide/index.html">Home</a></li>
     <li><a href="{{baseUrl}}/userGuide/userQuickStart.html">Quick Start</a></li>
-    <li><a href="{{baseUrl}}/userGuide/includeAndRender.html">Command: include and render</a></li>
     <li><a href="{{baseUrl}}/userGuide/contentAuthoring.html">Content Authoring</a></li>
     <li><a href="{{baseUrl}}/userGuide/developingASite.html">Developing a Site</a></li>
     <li><a href="{{baseUrl}}/userGuide/ghpagesDeployment.html">Github Pages Deployment</a></li>
@@ -13,6 +12,7 @@
   <dropdown text="Developer Guide">
   <li><a href="{{baseUrl}}/developerGuide/index.html">Home</a></li>
   <li><a href="{{baseUrl}}/developerGuide/settingUp.html">Setting up for Development</a></li>
+  <li><a href="{{baseUrl}}/developerGuide/includeAndRender.html">Command: include and render</a></li>
   <li><a href="{{baseUrl}}/developerGuide/testing.html">Testing</a></li>
   <li><a href="{{baseUrl}}/developerGuide/publishing.html">Publishing to npm</a></li>
   </dropdown>  

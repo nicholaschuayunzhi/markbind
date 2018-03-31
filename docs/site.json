@@ -14,10 +14,6 @@
       "title": "MarkBind: User Guide - Quick Start"
     },
     {
-      "src": "userGuide/includeAndRender.md",
-      "title": "MarkBind: User Guide - Include and Render"
-    },
-    {
       "src": "userGuide/contentAuthoring.md",
       "title": "MarkBind: User Guide - Content Authoring"
     },
@@ -40,6 +36,10 @@
     {
       "src": "developerGuide/index.md",
       "title": "MarkBind: Developer Guide"
+    },
+    {
+      "src": "developerGuide/includeAndRender.md",
+      "title": "MarkBind: User Guide - Include and Render"
     },
     {
       "src": "developerGuide/publishing.md",
