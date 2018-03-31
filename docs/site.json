@@ -6,7 +6,7 @@
       "title": "MarkBind: Generate Course Websites from Markdown Text"
     },
     {
-      "src": "userGuide.md",
+      "src": "userGuide/index.md",
       "title": "MarkBind: User Guide"
     },
     {
@@ -14,31 +14,31 @@
       "title": "MarkBind: Developer Guide"
     },
     {
-      "src": "sections/userQuickStart.md",
+      "src": "userGuide/userQuickStart.md",
       "title": "MarkBind: User Guide - Quick Start"
     },
     {
-      "src": "sections/includeAndRender.md",
+      "src": "userGuide/includeAndRender.md",
       "title": "MarkBind: User Guide - Include and Render"
     },
     {
-      "src": "sections/contentAuthoring.md",
+      "src": "userGuide/contentAuthoring.md",
       "title": "MarkBind: User Guide - Content Authoring"
     },
     {
-      "src": "sections/developingASite.md",
+      "src": "userGuide/developingASite.md",
       "title": "MarkBind: User Guide - Developing a Site"
     },
     {
-      "src": "sections/ghpagesDeployment.md",
+      "src": "userGuide/ghpagesDeployment.md",
       "title": "MarkBind: User Guide - Github Pages Deploment"
     },
     {
-      "src": "sections/includingContents.md",
+      "src": "userGuide/includingContents.md",
       "title": "MarkBind: User Guide - Including Contents"
     },
     {
-      "src": "sections/siteConfiguration.md",
+      "src": "userGuide/siteConfiguration.md",
       "title": "MarkBind: User Guide - Site Configuration"
     }
   ],

@@ -169,8 +169,8 @@ Examples of websites built using MarkBind:
 
 #### For Users
 
-* [Quick Start]({{baseUrl}}/sections/userQuickStart.html)
-* [User Guide]({{baseUrl}}/userGuide.html)
+* [Quick Start](./userGuide/userQuickStart.html)
+* [User Guide](./userGuide/index.html)
 
 
 #### For Developers
