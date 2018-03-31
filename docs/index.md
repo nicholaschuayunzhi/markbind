@@ -174,7 +174,7 @@ Examples of websites built using MarkBind:
 
 #### For Developers
 
-* [Developer Guide](./developerGuide/index.html)
+* [Developer Guide](https://github.com/MarkBind/markbind-cli/wiki/Developer-Guide)
 
 ## <span class="glyphicon glyphicon-home" aria-hidden="true"></span> About us
 
