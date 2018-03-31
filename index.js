@@ -211,10 +211,11 @@ program
 
 program
   .command('build [root] [output]')
-  .option('--baseurl [baseurl]', 'overrides baseUrl in site.json, leave argument empty for empty baseUrl')
+  .option('--baseUrl [baseurl]', 'overrides baseUrl in site.json, leave argument empty for empty baseUrl')
   .description('build a website')
   .action((root, output, cmd) => {
     // if --baseUrl contains no arguments (cmd.baseUrl === true) then set baseUrl to empty string
+    console.log(cmd.baseUrl);
     const baseUrl = _.isBoolean(cmd.baseUrl) ? '' : cmd.baseUrl;
     const rootFolder = path.resolve(root || process.cwd());
     const defaultOutputRoot = path.join(rootFolder, '_site');
