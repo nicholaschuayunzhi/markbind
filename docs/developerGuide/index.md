@@ -1,8 +1,10 @@
 <link rel="stylesheet" href="{{baseUrl}}/css/main.css">
 
-<include src="./common/header.md" />
+<include src="../common/header.md" />
 
 <div class="website-content">
+
+# Developer Guide
 
 ## Requirement
 We expect contributors for *MarkBind* have the following knowledges:
@@ -73,82 +75,6 @@ The VueStrap library is [Bootstrap](getbootstrap.com/components/) components rew
 
 You can find more information at the [VueStrap repo](https://github.com/MarkBind/vue-strap).
 
-## Development Process
-
-### Development
-
-1. Fork and clone the repo.
-
-   We recommend that during your local development, clone both core library and the CLI repo to your system. And change the `require` statement for the core library in CLI to your local core library path.
-
-   For example, in `index.js` of `markbind-cli`, change `const MarkBind = require('markbind');` to `const MarkBind = require('../path/to/markbind');`. In this way, your changes to the core library will be reflected in your CLI program immediately.
-
-2. In the folder of your cloned repos, run
-
-	```
-	$ npm install
-	```
-
-  to install the project dependencies.
-
-3. To make sure you are using the cloned CLI program in your own terminal/console, in the cloned CLI repo, run
-
-	```
-	$ npm link
-	```
-
-  to bind the local markbind CLI program to the cloned development version.
-
-4. Now you can start making changes.
-
-### Using ESLint
-
-Our projects follow a [coding standard](https://github.com/oss-generic/process/blob/master/docs/CodingStandards.adoc). Using a linter will help check and fix some of the code style errors in your code. It will save time for both you and your code reviewer. The linting tool we use is [ESLint](https://eslint.org/). Here is [gist](https://gist.github.com/nicholaschuayunzhi/bfe53dbb5f1a0f02d545d55956f9ab7e) with explanation the eslint rules chosen in markbind-cli.
-
-#### Installation
-Install developer dependencies (ESLint, related plugins) in your cloned markbind and markbind-cli repositories.
-```
-$ npm install --only=dev
-```
-#### Lint your code
-
-Before making a commit/pull request, we highly recommend to lint your code.
-
-To lint a specific file, go to the root directory of the cloned repo and run
-```
-$ ./node_modules/.bin/eslint path/to/specificfile.js
-```
-To lint all files, run
-```
-$ ./node_modules/.bin/eslint .
-```
-
-You can add the `--fix` flag to correct any fixable style errors.
-```
-$ ./node_modules/.bin/eslint . --fix
-```
-
-#### Integration with Editors
-ESLint has [integrations with popular editors](https://eslint.org/docs/user-guide/integrations). They offer features such as fix errors on save which will make developement more convenient.
-
-### Publishing a new version
-
-When you are ready to release a new version, run
-
-```
-$ npm version [<newversion>]
-```
-
-to create a new version, where the `newversion` argument should be a valid semver string (one of patch, minor, major, prepatch, preminor, premajor, prerelease).
-
-After that, run
-
-```
-$ npm publish
-```
-
-to publish it to the NPM repository.
-
-**NOTICE**: when you made changes to markbind core library and wish to use them in the next release of CLI program, don't forget to update the new version of the core library in the `package.json` of the CLI project.
+<include src="../common/devGuideSections.md" />
 
 </div>

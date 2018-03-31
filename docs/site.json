@@ -10,10 +10,6 @@
       "title": "MarkBind: User Guide"
     },
     {
-      "src": "developerGuide.md",
-      "title": "MarkBind: Developer Guide"
-    },
-    {
       "src": "userGuide/userQuickStart.md",
       "title": "MarkBind: User Guide - Quick Start"
     },
@@ -40,6 +36,22 @@
     {
       "src": "userGuide/siteConfiguration.md",
       "title": "MarkBind: User Guide - Site Configuration"
+    },
+    {
+      "src": "developerGuide/index.md",
+      "title": "MarkBind: Developer Guide"
+    },
+    {
+      "src": "developerGuide/publishing.md",
+      "title": "MarkBind: Developer Guide - Publishing to npm"
+    },
+    {
+      "src": "developerGuide/settingUp.md",
+      "title": "MarkBind: Developer Guide - Setting up for Development"
+    },
+    {
+      "src": "developerGuide/testing.md",
+      "title": "MarkBind: Developer Guide - Testing"
     }
   ],
   "ignore": [

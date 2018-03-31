@@ -6,10 +6,14 @@
     <li><a href="{{baseUrl}}/userGuide/includeAndRender.html">Command: include and render</a></li>
     <li><a href="{{baseUrl}}/userGuide/contentAuthoring.html">Content Authoring</a></li>
     <li><a href="{{baseUrl}}/userGuide/developingASite.html">Developing a Site</a></li>
-    <li><a href="{{baseUrl}}/userGuide/ghpagesDeployment.html">Github Pages Deploment</a></li>
+    <li><a href="{{baseUrl}}/userGuide/ghpagesDeployment.html">Github Pages Deployment</a></li>
     <li><a href="{{baseUrl}}/userGuide/includingContents.html">Including Contents</a></li>
     <li><a href="{{baseUrl}}/userGuide/siteConfiguration.html">Site Configuration</a></li>
   </dropdown>
-  <li><a href="{{baseUrl}}/developerGuide.html">Developer Guide</a></li>
+  <dropdown text="Developer Guide">
+  <li><a href="{{baseUrl}}/developerGuide/index.html">Home</a></li>
+  <li><a href="{{baseUrl}}/developerGuide/settingUp.html">Setting up for Development</a></li>
+  <li><a href="{{baseUrl}}/developerGuide/testing.html">Testing</a></li>
+  <li><a href="{{baseUrl}}/developerGuide/publishing.html">Publishing to npm</a></li>
   </dropdown>  
 </navbar>
