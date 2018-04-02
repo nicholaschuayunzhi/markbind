@@ -62,7 +62,9 @@ Let's take a look at this newly created `site.json`:
     }
   ],
   "ignore": [
-    "_site/*"
+    "_site/*",
+    "*.json",
+    "*.md"
   ],
   "deploy": {
     "message": "Site Update."

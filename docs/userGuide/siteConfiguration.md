@@ -20,7 +20,8 @@ Let's examine a typical `site.json` file:
   ],
   "ignore": [
     "_site/*",
-    ".git/*"
+    "*.json",
+    "*.md"
   ],
   "deploy": {
     "message": "Site Update."
