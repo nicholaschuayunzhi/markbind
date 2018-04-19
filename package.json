@@ -57,7 +57,7 @@
     "lint": "./node_modules/.bin/eslint .",
     "pretest": "npm run lint",
     "testwin": "cd test/test_site && test.bat",
-    "test": "cd test/test_site && ./test.sh"
+    "test": "npm list && cd test/test_site && ./test.sh"
   },
   "devDependencies": {
     "colors": "^1.2.1",
