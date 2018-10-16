@@ -69,6 +69,8 @@ const isPathSeparatorDiff = diff => diff === '\\' || diff === '/';
  * @throws {Error} if any diffs that are not path separators are found
  */
 const diffHtml = (expected, actual) => {
+  console.log(expected);
+  console.log(actual);
   let insidePath = false;
 
   const diff = jsdiff.diffChars(expected, actual);
