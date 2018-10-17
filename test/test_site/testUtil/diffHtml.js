@@ -25,12 +25,16 @@ const endsWithUnclosedPath = (fragment) => {
  *        <div/>
  */
 const endsWithOpeningTag = (fragment) => {
+  let numUnopenedTag = 0;
   for (let i = fragment.length - 1; i >= 0; i -= 1) {
     if (fragment[i] === '<') {
-      return true;
+      numUnopenedTag -= 1;
+      if (numUnopenedTag < 0) {
+        return true;
+      }
     }
     if (fragment[i] === '>') {
-      return false;
+      numUnopenedTag += 1;
     }
   }
   return false;
@@ -69,8 +73,8 @@ const isPathSeparatorDiff = diff => diff === '\\' || diff === '/';
  * @throws {Error} if any diffs that are not path separators are found
  */
 const diffHtml = (expected, actual) => {
-  console.log(expected);
-  console.log(actual);
+  // console.log(expected);
+  // console.log(actual);
   let insidePath = false;
 
   const diff = jsdiff.diffChars(expected, actual);
