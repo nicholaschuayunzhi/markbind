@@ -81,12 +81,17 @@ function Parser(options) {
   this._options = options || {};
   // eslint-disable-next-line no-console
   this._onError = this._options.errorHandler || console.error;
-  this._fileCache = {};
   this.dynamicIncludeSrc = [];
   this.staticIncludeSrc = [];
   this.boilerplateIncludeSrc = [];
   this.missingIncludeSrc = [];
 }
+
+Parser._fileCache = {};
+
+Parser.clearCache = function () {
+  Parser._fileCache = {};
+};
 
 Parser.prototype.getDynamicIncludeSrc = function () {
   return _.clone(this.dynamicIncludeSrc);
@@ -183,10 +188,9 @@ Parser.prototype._preprocess = function (node, context, config) {
     }
 
     this.staticIncludeSrc.push({ from: context.cwf, to: actualFilePath });
-
     try {
-      self._fileCache[actualFilePath] = self._fileCache[actualFilePath]
-        ? self._fileCache[actualFilePath] : fs.readFileSync(actualFilePath, 'utf8');
+      Parser._fileCache[actualFilePath] = Parser._fileCache[actualFilePath]
+        ? Parser._fileCache[actualFilePath] : fs.readFileSync(actualFilePath, 'utf8');
     } catch (e) {
       // Read file fail
       const missingReferenceErrorMessage = `Missing reference in: ${element.attribs[ATTRIB_CWF]}`;
@@ -202,7 +206,7 @@ Parser.prototype._preprocess = function (node, context, config) {
       element.name = 'markdown';
     }
 
-    let fileContent = self._fileCache[actualFilePath]; // cache the file contents to save some I/O
+    let fileContent = Parser._fileCache[actualFilePath]; // cache the file contents to save some I/O
     const { parent, relative } = calculateNewBaseUrls(filePath, config.rootPath, config.baseUrlMap);
     const userDefinedVariables = config.userDefinedVariablesMap[path.resolve(parent, relative)];
     fileContent = nunjucks.renderString(fileContent, userDefinedVariables);

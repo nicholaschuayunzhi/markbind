@@ -22,6 +22,7 @@ url.join = path.posix.join;
 const delay = require('./util/delay');
 const logger = require('./util/logger');
 const Page = require('./Page');
+const MarkBind = require('./lib/markbind/src/parser');
 
 const CLI_VERSION = require('../package.json').version;
 
@@ -450,6 +451,7 @@ Site.prototype.generate = function (baseUrl) {
       .then(() => this.collectAddressablePages())
       .then(() => this.collectBaseUrl())
       .then(() => this.collectUserDefinedVariablesMap())
+      .then(() => MarkBind.clearCache())
       .then(() => this.buildAssets())
       .then(() => this.buildSourceFiles())
       .then(() => this.copyMarkBindAsset())
@@ -490,6 +492,7 @@ Site.prototype._rebuildAffectedSourceFiles = function (filePaths) {
   const uniquePaths = _.uniq(filePathArray);
   logger.verbose(`Rebuild affected paths: ${uniquePaths}`);
   return new Promise((resolve, reject) => {
+    MarkBind.clearCache();
     this.regenerateAffectedPages(uniquePaths)
       .then(() => fs.removeAsync(this.tempPath))
       .then(resolve)
