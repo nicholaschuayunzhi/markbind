@@ -53,7 +53,7 @@ MarkBind Command Line Interface (CLI) can be run in the following ways:
 
 ### `deploy` Command
 
-**Format:** `markbind [deploy | d]`
+**Format:** `markbind [deploy  d]`
 
 **Description:** Deploys the site to the repo's Github pages by pushing everything in the generated site (default dir: `_site`) to the `gh-pages` branch of the current git working directory's remote repo.
 
@@ -63,7 +63,7 @@ MarkBind Command Line Interface (CLI) can be run in the following ways:
 
 ### `init` Command
 
-**Format:** `markbind [init | i] [<OPTIONS>]`
+**Format:** `markbind [init i] [<OPTIONS>]`
 
 **Description:** Initializes a directory into a MarkBind site by creating a skeleton structure for the website which includes a `index.md` and a `site.json`.
 
@@ -80,7 +80,7 @@ MarkBind Command Line Interface (CLI) can be run in the following ways:
 
 ### `serve` Command
 
-**Format:** `markbind [serve | s] [<OPTIONS>]`
+**Format:** `markbind [serve s] [<OPTIONS>]`
 
 **Description:** Does the following steps:
 1. Builds the site and puts the generated files in a directory named `_site`.
