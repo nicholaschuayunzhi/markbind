@@ -37,7 +37,6 @@ program
 
 program
   .command('init [root]')
-  .alias('i')
   .description('init a markbind website project')
   .action((root) => {
     const rootFolder = path.resolve(root || process.cwd());
@@ -53,7 +52,6 @@ program
 
 program
   .command('serve [root]')
-  .alias('s')
   .description('build then serve a website from a directory')
   .option('-f, --force-reload', 'force a full reload of all site files when a file is changed')
   .option('-n, --no-open', 'do not automatically open the site in browser')
@@ -158,7 +156,6 @@ program
 
 program
   .command('deploy')
-  .alias('d')
   .description('deploy the site to the repo\'s Github pages.')
   .action(() => {
     const rootFolder = path.resolve(process.cwd());
@@ -175,7 +172,6 @@ program
 
 program
   .command('build [root] [output]')
-  .alias('b')
   .option('--baseUrl [baseUrl]',
           'optional flag which overrides baseUrl in site.json, leave argument empty for empty baseUrl')
   .description('build a website')
