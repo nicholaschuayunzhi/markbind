@@ -173,6 +173,7 @@ program
     printHeader();
   });
 
+// force
 program
   .command('build [root] [output]')
   .alias('b')
