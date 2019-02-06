@@ -27,7 +27,7 @@ class DiffPrinter {
       ansiEscCode = '';
       break;
     }
-    process.stderr.write(`${ansiEscCode}${text}\n${DiffPrinter.ANSI_RESET}`);
+    process.stderr.write(`${ansiEscCode}${text}${DiffPrinter.ANSI_RESET}\n`);
   }
 
   /**
