@@ -103,6 +103,16 @@ As mentioned in _User Guide: MarkBind Syntax_, you can use built-in variables to
 <p/>
 
 
+##### Variables: Defaults
+
+You can specify a default value for a variable, which is displayed when the variable is not specified in `variables.md` and by any of the [includes]({{ baseUrl }}/userGuide/reusingContents.html#the-include-tag) of the page. This is done by adding `or defaultValue` within the curly braces.
+
+<div class="indented">
+
+{{ icon_example }} If `name` is not declared in `variables.md`:<br>
+<code>My name is {<span></span>{ name or "Anonymous" }}.</code> {{ icon_arrow_right }} My name is Anonymous.
+</div>
+
 ##### Variables: Tips and Tricks
 
 **Variables can refer to other variables** that are declared earlier, including built-in variables.
@@ -147,6 +157,20 @@ You must use the `safe` filter when using such variables:
 <code>{<span></span>{ right_hand_2 }}</code> {{ icon_arrow_right }} {{glyphicon_hand_right}}
 </div>
 
+### Page Variables
+
+**You can also declare variables for use within a single page.** These variables work exactly the same as regular variables, except that their values only apply to the page they are declared in. This can be done by using the `<variable>` tag.
+
+<div class="indented">
+
+{{ icon_example }} Declaring page variables:<br>
+
+`<variable name="full_name">John Doe</variable>`<br>
+<code>My name is {<span></span>{ full_name }}. This is {<span></span>{ full_name }}'s site.</code>
+</div>
+
+Note: These variables will also be applied to [`<include>` files]({{ baseUrl }}/userGuide/reusingContents.html#the-include-tag). If the same variable is defined in a chain of pages (e.g. `a.md` includes `b.md` includes `c.md`...), variables defined in the top-most page will take precedence. Global variables (`_markbind/variables.md`) will take precedence over any page variables.
+
 <hr><!-- ======================================================================================================= -->
 
 ## The `include` tag
@@ -172,21 +196,6 @@ Tip 1. ...
 Tip 3. ...
 ```
 </div>
-
-Attributes:
-* `src`: specify the source file path.
-* `inline` (optional): make the included result an inline element. (wrapped in `<span>` tag). e.g.,
-  ```html
-  <include src="../docs/summary.md" inline />
-   ```
-* `optional` (optional): include the document only if it exists i.e., there will be no error message if the file does not exist. e.g.,
-  ```html
-  <include src="UserStories.md" optional />
-  ```
-* `trim` (optional): remove leading and trailing whitespace and newlines from the document before including.
-  ```html
-  <include src="frament.md" trim />
-  ```
 
 **You can `<include>` a fragment of a file** by specifying the `#fragment-id` at the end of the `src` attribute value, provided the fragment is wrapped in a `<div>`/`<span>`/`<seg>` tag with the matching `id`.
 
@@ -216,11 +225,26 @@ When setting the `id` of a fragment, be careful not to clash with heading anchor
 
 </box>
 
+**Attributes:**
+* **`src`**: specify the source file path.
+* **`inline`** (optional): make the included result an inline element. (wrapped in `<span>` tag). e.g.,
+  ```html
+  The title is <include src="../docs/summary.md#title" inline /> while ...
+   ```
+* **`optional`** (optional): include the file/fragment only if it exists i.e., there will be no error message if the file/fragment does not exist. e.g.,
+  ```html
+  <include src="UserStories.md" optional />
+  ```
+* **`trim`** (optional): remove leading and trailing whitespace and newlines from the document before including.
+  ```html
+  <include src="UserStories.md#epic" trim />
+  ```
 
-<box border-left-color="{{ markbind_blue}}">
-
-{{ icon_bulb_blue }} The `<include>` tag works for any MarBind source file including the _font matter_ section but it may not work in some _special_ files such as the `_markbind/variables.md`.
-</box>
+<include src="tip.md" boilerplate >
+<span id="tip_body">
+The `<include>` mechanism can be used inside any MarkBind source file (even inside the _front matter_ section) but it will not work inside some _special_ files such as the `_markbind/variables.md`.
+</span>
+</include>
 
 ##### `<include>` Inside an Included File
 
@@ -258,6 +282,33 @@ The content of the `chapter1.md` and `chapter2.md` will be included in the `revi
 In other words, **`<include>` interprets the reused code relative to the original location of the file, not the location in which it is reused.**
 
 <hr><!-- ======================================================================================================= -->
+
+##### Specifying Variables in an `<include>`
+
+**It is possible to include variables in an `<include>`.**
+
+<div class="indented">
+
+{{ icon_example }} Specifying `title` and `author` variables in an `<include>` tag:
+
+```html
+<include src="article.md">
+  <span id="title">My Title</span>
+  <span id="author">John Doe</span>
+</include>
+```
+
+In `article.md`:
+
+<code>
+# {<span></span>{ title }}<br>
+Author: {<span></span>{ author }}
+</code>
+</div>
+
+These variables work the same way as variables in `_markbind/variables.md`, except that they only apply to the included file. They allow the included file to be reused as a template, for different source files using different variable values.
+
+If the same variable is defined in a chain of `<include>`s (e.g. `a.md` includes `b.md` includes `c.md`...), variables defined in the top-most `<include>` will take precedence. Global variables (`_markbind/variables.md`) will take precedence over any `<include>` variables.
 
 ## Using Boilerplate Files
 
@@ -390,10 +441,12 @@ c:/course/
 ```
 </div>
 
-<box border-left-color="{{ markbind_blue}}">
+<include src="tip.md" boilerplate >
+<span id="tip_body">
+If you are using Git for version control, you can set up the sub-site repository as a [Git sub-module](https://git-scm.com/book/en/v2/Git-Tools-Submodules) of the main site repository.
+</span>
+</include>
 
-{{ icon_bulb_blue }} If you are using Git for version control, you can set up the sub-site repository as a [Git sub-module](https://git-scm.com/book/en/v2/Git-Tools-Submodules) of the main site repository.
-</box>
 
 <hr><!-- ======================================================================================================= -->
 

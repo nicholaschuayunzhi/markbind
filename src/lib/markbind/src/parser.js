@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 const cheerio = require('cheerio');
 const fs = require('fs');
 const htmlparser = require('htmlparser2');
@@ -86,6 +84,59 @@ function Parser(options) {
   this.staticIncludeSrc = [];
   this.boilerplateIncludeSrc = [];
   this.missingIncludeSrc = [];
+}
+
+/**
+ * Extract variables from an include element
+ * @param includeElement include element to extract variables from
+ * @param contextVariables variables defined by parent pages
+ */
+function extractIncludeVariables(includeElement, contextVariables) {
+  const includedVariables = { ...contextVariables };
+  if (includeElement.children) {
+    includeElement.children.forEach((child) => {
+      if (child.name !== 'span') {
+        return;
+      }
+      if (!child.attribs.id) {
+        // eslint-disable-next-line no-console
+        console.warn(`Missing reference in ${includeElement.attribs[ATTRIB_CWF]}\n`
+                   + `Missing 'id' in variable for ${includeElement.attribs.src} include.`);
+        return;
+      }
+      if (!includedVariables[child.attribs.id]) {
+        includedVariables[child.attribs.id] = cheerio.html(child.children);
+      }
+    });
+  }
+  return includedVariables;
+}
+
+/**
+ * Extract page variables from a page
+ * @param filename for error printing
+ * @param data to extract variables from
+ * @param userDefinedVariables global variables
+ * @param contextVariables variables defined by parent pages
+ */
+function extractPageVariables(fileName, data, userDefinedVariables, contextVariables) {
+  const $ = cheerio.load(data);
+  const pageVariables = { ...contextVariables };
+  $('variable').each(function () {
+    const variableElement = $(this);
+    const variableName = variableElement.attr('name');
+    if (!variableName) {
+      // eslint-disable-next-line no-console
+      console.warn(`Missing 'name' for variable in ${fileName}\n`);
+      return;
+    }
+    if (!pageVariables[variableName]) {
+      pageVariables[variableName]
+        = nunjucks.renderString(md.renderInline(variableElement.html()),
+                                { ...pageVariables, ...userDefinedVariables });
+    }
+  });
+  return pageVariables;
 }
 
 Parser.prototype.getDynamicIncludeSrc = function () {
@@ -205,7 +256,16 @@ Parser.prototype._preprocess = function (node, context, config) {
     let fileContent = self._fileCache[actualFilePath]; // cache the file contents to save some I/O
     const { parent, relative } = calculateNewBaseUrls(filePath, config.rootPath, config.baseUrlMap);
     const userDefinedVariables = config.userDefinedVariablesMap[path.resolve(parent, relative)];
-    fileContent = nunjucks.renderString(fileContent, userDefinedVariables);
+
+    // Extract included variables from the PARENT file
+    let allVariables = extractIncludeVariables(element, context.variables);
+
+    // Extract page variables from the CHILD file
+    allVariables = extractPageVariables(element.attribs.src, fileContent, userDefinedVariables, allVariables);
+
+    // Render inner file content
+    fileContent = nunjucks.renderString(fileContent, { ...allVariables, ...userDefinedVariables });
+
     delete element.attribs.boilerplate;
     delete element.attribs.src;
     delete element.attribs.inline;
@@ -265,6 +325,7 @@ Parser.prototype._preprocess = function (node, context, config) {
     const childContext = _.cloneDeep(context);
     childContext.cwf = filePath;
     childContext.source = isIncludeSrcMd ? 'md' : 'html';
+    childContext.variables = allVariables;
     if (element.children && element.children.length > 0) {
       element.children = element.children.map(e => self._preprocess(e, childContext, config));
     }
@@ -275,6 +336,8 @@ Parser.prototype._preprocess = function (node, context, config) {
     element.attribs.src = filePath;
     this.dynamicIncludeSrc.push({ from: context.cwf, to: actualFilePath, asIfTo: filePath });
     return element;
+  } else if (element.name === 'variable') {
+    return createEmptyNode();
   } else {
     if (element.name === 'body') {
       // eslint-disable-next-line no-console
@@ -326,7 +389,7 @@ Parser.prototype._parse = function (node, context, config) {
       const { src, fragment } = element.attribs;
       const resultDir = path.dirname(path.join('{{hostBaseUrl}}', path.relative(config.rootPath, src)));
       const resultPath = path.join(resultDir, utils.setExtension(path.basename(src), '._include_.html'));
-      element.attribs.src = fragment ? `${resultPath}#${fragment}` : resultPath;
+      element.attribs.src = utils.ensurePosix(fragment ? `${resultPath}#${fragment}` : resultPath);
     }
     delete element.attribs.boilerplate;
     break;
@@ -413,7 +476,9 @@ Parser.prototype.includeFile = function (file, config) {
       }
       const { parent, relative } = calculateNewBaseUrls(file, config.rootPath, config.baseUrlMap);
       const userDefinedVariables = config.userDefinedVariablesMap[path.resolve(parent, relative)];
-      const fileContent = nunjucks.renderString(data, userDefinedVariables);
+      const pageVariables = extractPageVariables(path.basename(file), data, userDefinedVariables, {});
+      const fileContent = nunjucks.renderString(data, { ...pageVariables, ...userDefinedVariables });
+      context.variables = pageVariables;
       const fileExt = utils.getExt(file);
       if (utils.isMarkdownFileExt(fileExt)) {
         context.source = 'md';

@@ -7,6 +7,10 @@ const path = require('path');
 const pathIsInside = require('path-is-inside');
 const Promise = require('bluebird');
 
+const _ = {};
+_.isString = require('lodash/isString');
+
+const { ensurePosix } = require('./lib/markbind/src/utils');
 const FsUtil = require('./util/fsUtil');
 const logger = require('./util/logger');
 const MarkBind = require('./lib/markbind/src/parser');
@@ -56,6 +60,7 @@ function Page(pageConfig) {
   this.layout = pageConfig.layout;
   this.layoutsAssetPath = pageConfig.layoutsAssetPath;
   this.rootPath = pageConfig.rootPath;
+  this.enableSearch = pageConfig.enableSearch;
   this.searchable = pageConfig.searchable;
   this.src = pageConfig.src;
   this.tags = pageConfig.tags;
@@ -214,16 +219,23 @@ Page.prototype.prepareTemplateData = function () {
     ? this.titlePrefix + (this.title ? TITLE_PREFIX_SEPARATOR + this.title : '')
     : this.title;
 
+  // construct temporary asset object with only POSIX-style paths
+  const asset = {};
+  Object.entries(this.asset).forEach(([key, value]) => {
+    asset[key] = _.isString(value) ? ensurePosix(value) : value;
+  });
+
   return {
-    asset: this.asset,
+    asset,
     baseUrl: this.baseUrl,
     content: this.content,
     faviconUrl: this.faviconUrl,
     headFileBottomContent: this.headFileBottomContent,
     headFileTopContent: this.headFileTopContent,
-    pageNav: this.frontMatter.pageNav,
+    pageNav: this.isPageNavigationSpecifierValid(),
     siteNav: this.frontMatter.siteNav,
     title: prefixedTitle,
+    enableSearch: this.enableSearch,
   };
 };
 
